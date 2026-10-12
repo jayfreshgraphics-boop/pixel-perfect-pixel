@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep clinic-hours/phone validation in shared domain helpers, database calls in typed server-function modules, and page visuals aligned to semantic tokens; this keeps booking rules testable and the clinic theme consistent.

@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791842507274,
+      "tag": "0000_bright_smile_bookings",
+      "breakpoints": true
+    }
+  ]
 }
