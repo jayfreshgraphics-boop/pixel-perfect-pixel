@@ -1,0 +1,4 @@
+- [ ] Build the blue-and-white clinic home and appointment booking pages.
+- [ ] Add database-backed public booking, availability lookup, and six fictional demo appointments.
+- [ ] Add staff login, protected appointment dashboard, status actions, and review-message retry.
+- [ ] Add booking-rule tests and verify the booking and staff flows; request the two review-webhook secrets.
