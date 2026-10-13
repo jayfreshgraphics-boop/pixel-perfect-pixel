@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
-import type { Tables } from "@/integrations/supabase/types";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database, Tables } from "@/integrations/supabase/types";
 import { z } from "zod";
 
 const bookingInput = z.object({
@@ -41,7 +42,7 @@ export const bookAppointment = createServerFn({ method: "POST" })
       p_service: data.service,
       p_date: data.date,
       p_time: data.time,
-      p_notes: data.notes?.trim() || null,
+      p_notes: data.notes?.trim() ?? "",
     });
     if (error) {
       if (error.code === "23505") return { ok: false as const, message: "That time was just taken. Please choose another available time." };
@@ -51,7 +52,7 @@ export const bookAppointment = createServerFn({ method: "POST" })
     return { ok: true as const, reference: reference ?? "" };
   });
 
-async function assertStaff(supabase: { rpc: (fn: "has_role", args: { _user_id: string; _role: "staff" }) => Promise<{ data: boolean | null; error: { message: string } | null }> }, userId: string) {
+async function assertStaff(supabase: SupabaseClient<Database>, userId: string) {
   const { data: isStaff, error } = await supabase.rpc("has_role", { _user_id: userId, _role: "staff" });
   if (error || !isStaff) throw new Error("You do not have staff access.");
 }
